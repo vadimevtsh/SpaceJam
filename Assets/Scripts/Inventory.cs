@@ -18,7 +18,7 @@ public class Inventory : MonoBehaviour
     }
     #endregion
 
-    public int space = 4;
+    private readonly int _space = 4; // it was just public
     public List<Item> items = new List<Item>();
 
     public delegate void OnItemChanged();
@@ -29,7 +29,7 @@ public class Inventory : MonoBehaviour
     {
         if (!item.isDefaultItem)
         {
-            if (items.Count >= space)
+            if (items.Count >= _space)
             {
                 Debug.Log("Not enough room");
                 return;

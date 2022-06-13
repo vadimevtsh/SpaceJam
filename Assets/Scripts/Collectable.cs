@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Collectable : Collidable
 {
-    protected bool isCollected;
+    protected bool _isCollected;
 
     protected override void OnCollide(Collider2D coll)
     {
@@ -16,6 +16,6 @@ public class Collectable : Collidable
 
     protected virtual void OnCollect()
     {
-        isCollected = true;
+        _isCollected = true;
     }
 }

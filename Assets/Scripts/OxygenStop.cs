@@ -5,7 +5,7 @@ using UnityEngine;
 public class OxygenStop : Collidable
 {
     public GameObject Player;
-    private float currentOxygen;
+    private float _currentOxygen; // not needed?
 
     protected override void OnCollide(Collider2D coll)
     {

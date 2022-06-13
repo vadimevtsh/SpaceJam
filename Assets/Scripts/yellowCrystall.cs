@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class yellowCrystall : Collidable
+public class YellowCrystall : Collidable
 {
     public GameObject crystallPrefab;
     public GameObject O2Bar;

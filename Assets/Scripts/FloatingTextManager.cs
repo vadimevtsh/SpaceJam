@@ -8,11 +8,11 @@ public class FloatingTextManager : MonoBehaviour
     public GameObject textContainer;
     public GameObject textPrefab;
 
-    private List<FloatingText> floatingTexts = new List<FloatingText>();
+    private List<FloatingText> _floatingTexts = new List<FloatingText>();
 
     private void Update()
     {
-        foreach (FloatingText txt in floatingTexts)
+        foreach (FloatingText txt in _floatingTexts)
             txt.UpdateFloatingText();
     }
 
@@ -33,7 +33,7 @@ public class FloatingTextManager : MonoBehaviour
 
     private FloatingText GetFloatingText()
     {
-        FloatingText txt = floatingTexts.Find(t => !t.active);
+        FloatingText txt = _floatingTexts.Find(t => !t.active);
 
         if (txt == null)
         {
@@ -42,7 +42,7 @@ public class FloatingTextManager : MonoBehaviour
             txt.go.transform.SetParent(textContainer.transform);
             txt.txt = txt.go.GetComponent<Text>();
 
-            floatingTexts.Add(txt);
+            _floatingTexts.Add(txt);
         }
 
         return txt;

@@ -5,9 +5,10 @@ using UnityEngine.UI;
 
 public class SpaceMan : MonoBehaviour
 {
-    private Vector3 moveDelta;
-    private BoxCollider2D boxCollider;
-    private RaycastHit2D hit;
+    private Vector3 _moveDelta;
+    private BoxCollider2D _boxCollider;
+    private RaycastHit2D _hit;
+
     public Vector2 moveSpeed;
 
     public O2Bar myBar;
@@ -15,7 +16,7 @@ public class SpaceMan : MonoBehaviour
     public float currentOxygen;
     public float defaultOxygenRaiseDown;
 
-    private string[] collidableNames = new string[6] { "bottleFloor", "EnterSpaceShip", "QuitSpaceShip", "ToMaxOxygen", "fireKillerInSnow", "yellowCristal" };
+    private string[] _collidableNames = new string[6] { "bottleFloor", "EnterSpaceShip", "QuitSpaceShip", "ToMaxOxygen", "fireKillerInSnow", "yellowCristal" };
     public GameObject myText;
 
     void Start()
@@ -26,7 +27,7 @@ public class SpaceMan : MonoBehaviour
         myBar.SetMaxOxygen(maxOxygen);
 
         moveSpeed = new Vector2(0.9f, 0.9f);
-        boxCollider = GetComponent<BoxCollider2D>();
+        _boxCollider = GetComponent<BoxCollider2D>();
     }
 
     void FixedUpdate()
@@ -34,33 +35,33 @@ public class SpaceMan : MonoBehaviour
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
 
-        moveDelta = new Vector3(x, y, 0);
+        _moveDelta = new Vector3(x, y, 0);
 
-        if (moveDelta.x > 0)
+        if (_moveDelta.x > 0)
             transform.localScale = new Vector3(1, 1, 1);
-        else if (moveDelta.x < 0)
+        else if (_moveDelta.x < 0)
             transform.localScale = new Vector3(-1, 1, 1);
 
-        hit = Physics2D.BoxCast(transform.position, boxCollider.size, 0, new Vector2(0, moveDelta.y),
-            Mathf.Abs(moveDelta.y * Time.deltaTime * moveSpeed.y), LayerMask.GetMask("Actor", "Blocking"));
+        _hit = Physics2D.BoxCast(transform.position, _boxCollider.size, 0, new Vector2(0, _moveDelta.y),
+            Mathf.Abs(_moveDelta.y * Time.deltaTime * moveSpeed.y), LayerMask.GetMask("Actor", "Blocking"));
 
-        if (hit.collider == null)
+        if (_hit.collider == null)
         {
-            transform.Translate(0, moveDelta.y * Time.deltaTime * moveSpeed.y, 0);
+            transform.Translate(0, _moveDelta.y * Time.deltaTime * moveSpeed.y, 0);
         }
 
-        hit = Physics2D.BoxCast(transform.position, boxCollider.size, 0, new Vector2(moveDelta.x, 0),
-            Mathf.Abs(moveDelta.x * Time.deltaTime * moveSpeed.x), LayerMask.GetMask("Actor", "Blocking"));
+        _hit = Physics2D.BoxCast(transform.position, _boxCollider.size, 0, new Vector2(_moveDelta.x, 0),
+            Mathf.Abs(_moveDelta.x * Time.deltaTime * moveSpeed.x), LayerMask.GetMask("Actor", "Blocking"));
 
-        if (hit.collider == null)
+        if (_hit.collider == null)
         {
-            transform.Translate(moveDelta.x * Time.deltaTime * moveSpeed.x, 0, 0);
+            transform.Translate(_moveDelta.x * Time.deltaTime * moveSpeed.x, 0, 0);
         }
 
-        changeLevelOfOxygen();
+        ChangeLevelOfOxygen();
     }
 
-    private void changeLevelOfOxygen()
+    private void ChangeLevelOfOxygen()
     {
         if (currentOxygen >= maxOxygen)
             currentOxygen = 100;
@@ -70,7 +71,7 @@ public class SpaceMan : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D other)
     {
-        if (checkCollisionExit(other))
+        if (CheckCollisionExit(other))
         {
             myText.SetActive(false);
             if (other.collider.name == "QuitSpaceShip")
@@ -82,9 +83,9 @@ public class SpaceMan : MonoBehaviour
         
     }
 
-    private bool checkCollisionExit(Collision2D coll)
+    private bool CheckCollisionExit(Collision2D coll)
     {
-        foreach (string str in collidableNames)
+        foreach (string str in _collidableNames)
             if (coll.collider.name == str)
                 return true;
         return false;

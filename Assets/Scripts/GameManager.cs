@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
         //DontDestroyOnLoad(gameObject);
     }
 
-    public void showText(string msg, int fontSize, Color color, Vector3 position, Vector3 motion, float duration)
+    public void ShowText(string msg, int fontSize, Color color, Vector3 position, Vector3 motion, float duration)
     {
         floatingTextManager.Show(msg, fontSize, color, position, motion, duration);
     }
@@ -39,17 +39,17 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        isDead();
+        IsDead();
     }
 
-    private void isDead()
+    private void IsDead()
     {
         player = GameObject.Find("spaceman");
         if (player.GetComponent<SpaceMan>().currentOxygen <= 0)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
             Destroy(player);
-            loseText.text = "U lose. Suck penis";
+            loseText.text = "You lost";
 
         }
     }

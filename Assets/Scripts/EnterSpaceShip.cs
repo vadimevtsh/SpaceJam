@@ -8,15 +8,15 @@ public class EnterSpaceShip : Collidable
     public GameObject iconToPickUp;
     public GameObject SpaceMan;
 
-    public EstinguishingFire barSlider;
-    public bool isFire = true;
+    public ExtinguishingFire barSlider;
+    private bool _isFire = true; // was public
     public GameObject fire;
 
-    private Vector3 posToTeleport;
+    private Vector3 _posToTeleport;
 
-    private float cooldown = 3.0f;
-    private float lastshow;
-    private Vector3 posToSpawnAText = new Vector3(1.626f, 0.425f, -1);
+    private float _cooldown = 3.0f;
+    private float _lastShow;
+    private Vector3 _posToSpawnText = new Vector3(1.626f, 0.425f, -1);
 
     protected override void OnCollide(Collider2D coll)
     {
@@ -24,28 +24,29 @@ public class EnterSpaceShip : Collidable
         {
             iconToPickUp.SetActive(true);
 
-            if (isFire && Inventory.instance.CheckItem("fireEstinguisher") && Input.GetKey("e"))
+            if (_isFire && Inventory.instance.CheckItem("fireEstinguisher") && Input.GetKey("e"))
             {
                 barSlider.gameObject.SetActive(true);
-                barSlider.estinguishingFire();
+                barSlider.ExtinguishingOccurredFire();
                 if (barSlider.slider.value <= 0)
                 {
                     Destroy(fire);
-                    isFire = false;
+                    _isFire = false;
                     barSlider.gameObject.SetActive(false);
                 }
             }
 
-            if (isFire && !Inventory.instance.CheckItem("fireEstinguisher") && Input.GetKey("e") && (Time.time - lastshow > cooldown))
+            if (_isFire && !Inventory.instance.CheckItem("fireEstinguisher") && Input.GetKey("e") && (Time.time - _lastShow > _cooldown))
             {
-                lastshow = Time.time;
-                GameManager.instance.showText("U don't have a firethrower", 20, Color.white, posToSpawnAText, Vector3.zero, cooldown);
+                _lastShow = Time.time;
+                GameManager.instance.ShowText("U don't have a firethrower", 20, Color.white, _posToSpawnText, Vector3.zero, _cooldown);
             }
 
-            posToTeleport = new Vector3(-12.996f, -3.699989f, -1f);
-            if (Input.GetKeyDown("e") && isFire == false)
+            _posToTeleport = new Vector3(-12.996f, -3.699989f, -1f);
+
+            if (Input.GetKeyDown("e") && _isFire == false)
             {
-                SpaceMan.transform.position = posToTeleport;
+                SpaceMan.transform.position = _posToTeleport;
             }
         }
         
