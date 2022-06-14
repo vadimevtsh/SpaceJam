@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// This is a class that is responsible for managing floating text on the screen.
+/// </summary>
 public class FloatingTextManager : MonoBehaviour
 {
     public GameObject textContainer;
@@ -16,6 +19,15 @@ public class FloatingTextManager : MonoBehaviour
             txt.UpdateFloatingText();
     }
 
+    /// <summary>
+    /// Mwthod that prepares floating text and shows it to the user.
+    /// </summary>
+    /// <param name="msg">Message to be shown</param>
+    /// <param name="fontSize">Font Size</param>
+    /// <param name="color">Color of the message</param>
+    /// <param name="position">Position on the screen.</param>
+    /// <param name="motion">Motion</param>
+    /// <param name="duration">Duration</param>
     public void Show(string msg, int fontSize, Color color, Vector3 position, Vector3 motion, float duration)
     {
         FloatingText floatingText = GetFloatingText();
@@ -31,6 +43,10 @@ public class FloatingTextManager : MonoBehaviour
         floatingText.Show();
     }
 
+    /// <summary>
+    /// Method that creates floating text if needed or finds the one to be shown.
+    /// </summary>
+    /// <returns>Floating text to be shown.</returns>
     private FloatingText GetFloatingText()
     {
         FloatingText txt = _floatingTexts.Find(t => !t.active);

@@ -2,11 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This is a class that is responsible for dropping down the oxygen level.
+/// </summary>
 public class OxygenStop : Collidable
 {
     public GameObject Player;
-    private float _currentOxygen; // not needed?
 
+    /// <summary>
+    /// Method that sets default oxygen raise down to zero.
+    /// </summary>
+    /// <param name="coll">Collider</param>
     protected override void OnCollide(Collider2D coll)
     {
         if (coll.name == "spaceman")

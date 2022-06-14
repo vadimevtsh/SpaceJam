@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This is a class that represents collisions.
+/// </summary>
 public class Collidable : MonoBehaviour
 {
     public ContactFilter2D filter;
@@ -13,6 +16,9 @@ public class Collidable : MonoBehaviour
         _boxCollider = GetComponent<BoxCollider2D>();    
     }
 
+    /// <summary>
+    /// This is Unity's MonoBehaviour method that is called every frame.
+    /// </summary>
     protected virtual void Update()
     {
         _boxCollider.OverlapCollider(filter, _hits);
@@ -27,6 +33,10 @@ public class Collidable : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Virtual method that represents collisions. To be overriden in the child classes.
+    /// </summary>
+    /// <param name="coll">Collider</param>
     protected virtual void OnCollide(Collider2D coll)
     {
         Debug.Log(coll.name);

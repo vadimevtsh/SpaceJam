@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// This is a class that is responsible for the main character.
+/// </summary>
 public class SpaceMan : MonoBehaviour
 {
     private Vector3 _moveDelta;
@@ -61,6 +64,9 @@ public class SpaceMan : MonoBehaviour
         ChangeLevelOfOxygen();
     }
 
+    /// <summary>
+    /// Method that changes the oxygen level.
+    /// </summary>
     private void ChangeLevelOfOxygen()
     {
         if (currentOxygen >= maxOxygen)
@@ -69,6 +75,10 @@ public class SpaceMan : MonoBehaviour
         myBar.SetOxygen(currentOxygen);
     }
 
+    /// <summary>
+    /// Method that sets oxygen raise down back to normal when character leaves the ship.
+    /// </summary>
+    /// <param name="other">Collider</param>
     private void OnCollisionExit2D(Collision2D other)
     {
         if (CheckCollisionExit(other))
@@ -82,7 +92,11 @@ public class SpaceMan : MonoBehaviour
         }
         
     }
-
+    /// <summary>
+    /// Method that checks the collision with exit door.
+    /// </summary>
+    /// <param name="coll">Collider</param>
+    /// <returns></returns>
     private bool CheckCollisionExit(Collision2D coll)
     {
         foreach (string str in _collidableNames)

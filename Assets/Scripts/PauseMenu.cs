@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// This is a class that is responsible for pause menu (when esc is pressed during the game).
+/// </summary>
 public class PauseMenu : MonoBehaviour
 {
     private bool _gameIsPaused = false;
     public GameObject pauseMenuUI;
-
-    //private void Start()
-    //{
-    //    DontDestroyOnLoad(gameObject);
-    //}
 
     void Update()
     {
@@ -28,6 +26,9 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Method that is called when user presses resume button in the pause menu.
+    /// </summary>
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
@@ -35,6 +36,9 @@ public class PauseMenu : MonoBehaviour
         _gameIsPaused = false;
     }
 
+    /// <summary>
+    /// Method that is called when user presses esc button during the game.
+    /// </summary>
     void Pause()
     {
         pauseMenuUI.SetActive(true);
@@ -42,6 +46,9 @@ public class PauseMenu : MonoBehaviour
         _gameIsPaused = true;
     }
 
+    /// <summary>
+    /// Method that is called when user presses menu button in the pause menu.
+    /// </summary>
     public void GoToMenu()
     {
         Time.timeScale = 1;

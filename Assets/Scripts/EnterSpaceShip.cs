@@ -3,21 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// This is a class that represents entering the ship.
+/// </summary>
 public class EnterSpaceShip : Collidable
 {
     public GameObject iconToPickUp;
     public GameObject SpaceMan;
 
     public ExtinguishingFire barSlider;
-    private bool _isFire = true; // was public
+    private bool _isFire = true; 
     public GameObject fire;
 
-    private Vector3 _posToTeleport;
+    private Vector3 _posToTeleport; // coordinates to teleport to after entering the ship
 
     private float _cooldown = 3.0f;
     private float _lastShow;
-    private Vector3 _posToSpawnText = new Vector3(1.626f, 0.425f, -1);
+    private Vector3 _posToSpawnText = new Vector3(1.626f, 0.425f, -1); // coordinates to show message to after extinguishing the fire
 
+    /// <summary>
+    /// Method that represents collision with the ship.
+    /// </summary>
+    /// <param name="coll">Collider.</param>
     protected override void OnCollide(Collider2D coll)
     {
         if (coll.name == "spaceman")

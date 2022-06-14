@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// This is a class that represents a single inventory slot in the inventory.
+/// </summary>
 public class InventorySlot : MonoBehaviour
 {
     public Image icon;
@@ -10,6 +13,10 @@ public class InventorySlot : MonoBehaviour
 
     Item item;
 
+    /// <summary>
+    /// Method that adds item into the slot on the screen.
+    /// </summary>
+    /// <param name="newItem">item to be added</param>
     public void AddItem(Item newItem)
     {
         item = newItem;
@@ -19,6 +26,9 @@ public class InventorySlot : MonoBehaviour
         removeButton.interactable = true;
     }
 
+    /// <summary>
+    /// Method that clears slot when the corresponding item is removed.
+    /// </summary>
     public void ClearSlot()
     {
         item = null;
@@ -28,11 +38,17 @@ public class InventorySlot : MonoBehaviour
         removeButton.interactable = false;
     }
 
+    /// <summary>
+    /// Method that removes item from the inventory.
+    /// </summary>
     public void OnRemoveButton()
     {
         Inventory.instance.Remove(item);
     }
 
+    /// <summary>
+    /// Method that uses item from the inventory.
+    /// </summary>
     public void UseItem()
     {
         if (item != null)
