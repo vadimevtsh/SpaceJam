@@ -10,7 +10,7 @@ public class OxygenStop : Collidable
     public GameObject Player;
 
     /// <summary>
-    /// Method that sets default oxygen raise down to zero.
+    /// Method that sets default oxygen raise down to zero when entering spaceship.
     /// </summary>
     /// <param name="coll">Collider</param>
     protected override void OnCollide(Collider2D coll)

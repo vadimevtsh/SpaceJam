@@ -19,8 +19,8 @@ public class SpaceMan : MonoBehaviour
     public float currentOxygen;
     public float defaultOxygenRaiseDown;
 
-    private string[] _collidableNames = new string[6] { "bottleFloor", "EnterSpaceShip", "QuitSpaceShip", "ToMaxOxygen", "fireKillerInSnow", "yellowCristal" };
-    public GameObject myText;
+    private string[] _collidableNames = new string[6] { "bottleFloor", "EnterSpaceShip", "QuitSpaceShip", "ToMaxOxygen", "fireKillerInSnow", "yellowCristal" }; // list of strings put in another class
+    public GameObject iconToPickUp;
 
     void Start()
     {
@@ -83,17 +83,17 @@ public class SpaceMan : MonoBehaviour
     {
         if (CheckCollisionExit(other))
         {
-            myText.SetActive(false);
+            iconToPickUp.SetActive(false);
             if (other.collider.name == "QuitSpaceShip")
             {
-                myText.SetActive(false);
+                iconToPickUp.SetActive(false);
                 defaultOxygenRaiseDown = 5; 
             }
         }
         
     }
     /// <summary>
-    /// Method that checks the collision with exit door.
+    /// Method that removes E button 
     /// </summary>
     /// <param name="coll">Collider</param>
     /// <returns></returns>

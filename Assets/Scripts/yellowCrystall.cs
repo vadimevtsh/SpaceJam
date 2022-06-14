@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// This is a class that is responsible for something
+/// This is a class that is responsible for placing crystal into the ship
 /// </summary>
 public class YellowCrystall : Collidable
 {
@@ -12,7 +12,7 @@ public class YellowCrystall : Collidable
     public GameObject iconToPickUp;
 
     /// <summary>
-    /// Method that does something.
+    /// Method that places crystal into the ship.
     /// </summary>
     /// <param name="coll">Collision</param>
     protected override void OnCollide(Collider2D coll)
