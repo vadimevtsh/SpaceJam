@@ -9,7 +9,8 @@ public class ItemPickUp : Collidable
 {
     public Item item;
     public GameObject iconToPickUp;
-    bool wasPickedUp = false;
+    
+    private bool _wasPickedUp = false;
 
     /// <summary>
     /// Method that picks up the item when collision happens.
@@ -28,9 +29,9 @@ public class ItemPickUp : Collidable
     {
         iconToPickUp.SetActive(true);
 
-        if (!wasPickedUp && Input.GetKeyDown("e"))
+        if (!_wasPickedUp && Input.GetKeyDown("e"))
         {
-            wasPickedUp = true;
+            _wasPickedUp = true;
             Inventory.instance.Add(item);
             iconToPickUp.SetActive(false);
             Destroy(gameObject);
