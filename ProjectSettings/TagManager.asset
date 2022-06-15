@@ -56,11 +56,14 @@ TagManager:
   - name: Floor
     uniqueID: 976730745
     locked: 0
-  - name: Actor
-    uniqueID: 2038115577
-    locked: 0
   - name: BigRocks
     uniqueID: 129488691
+    locked: 0
+  - name: Crystals
+    uniqueID: 3638220985
+    locked: 0
+  - name: Actor
+    uniqueID: 2038115577
     locked: 0
   - name: Ship
     uniqueID: 3030354077
