@@ -22,6 +22,31 @@ public class EnterSpaceShip : Collidable
     private Vector3 _posToSpawnText = new Vector3(1.626f, 0.425f, -1); // coordinates to show message to after extinguishing the fire
 
     /// <summary>
+    /// Method that represents extinguishing fire.
+    /// </summary>
+    private void ExtinguishFire()
+    {
+        barSlider.gameObject.SetActive(true);
+        barSlider.ExtinguishingOccurredFire();
+
+        if (barSlider.slider.value <= 0)
+        {
+            Destroy(fire);
+            _isFire = false;
+            barSlider.gameObject.SetActive(false);
+        }
+    }
+
+    /// <summary>
+    /// Method that represents showing message, when you don't have a firethrower.
+    /// </summary>
+    private void ShowMessage()
+    {
+        _lastShow = Time.time;
+        GameManager.instance.ShowText("U don't have a firethrower", 20, Color.white, _posToSpawnText, Vector3.zero, _cooldown);
+    }
+
+    /// <summary>
     /// Method that represents collision with the ship.
     /// </summary>
     /// <param name="coll">Collider.</param>
@@ -33,20 +58,13 @@ public class EnterSpaceShip : Collidable
 
             if (_isFire && Inventory.instance.CheckItem("fireEstinguisher") && Input.GetKey("e"))
             {
-                barSlider.gameObject.SetActive(true);
-                barSlider.ExtinguishingOccurredFire();
-                if (barSlider.slider.value <= 0)
-                {
-                    Destroy(fire);
-                    _isFire = false;
-                    barSlider.gameObject.SetActive(false);
-                }
+                // function for extinguishing fire
+                ExtinguishFire();
             }
-
+            // if you dont have fireextinguisher
             if (_isFire && !Inventory.instance.CheckItem("fireEstinguisher") && Input.GetKey("e") && (Time.time - _lastShow > _cooldown))
             {
-                _lastShow = Time.time;
-                GameManager.instance.ShowText("U don't have a firethrower", 20, Color.white, _posToSpawnText, Vector3.zero, _cooldown);
+                ShowMessage();
             }
 
             _posToTeleport = new Vector3(-12.996f, -3.699989f, -1f);
