@@ -14,6 +14,7 @@ public class EnterSpaceShip : Collidable
     public ExtinguishingFire barSlider;
     private bool _isFire = true; 
     public GameObject fire;
+    public Item item;
 
     private Vector3 _posToTeleport; // coordinates to teleport to after entering the ship
 
@@ -34,6 +35,7 @@ public class EnterSpaceShip : Collidable
             Destroy(fire);
             _isFire = false;
             barSlider.gameObject.SetActive(false);
+            Inventory.instance.Remove(item);
         }
     }
 
@@ -56,15 +58,17 @@ public class EnterSpaceShip : Collidable
         {
             iconToPickUp.SetActive(true);
 
-            if (_isFire && Inventory.instance.CheckItem("fireEstinguisher") && Input.GetKey("e"))
-            {
-                // function for extinguishing fire
-                ExtinguishFire();
-            }
             // if you dont have fireextinguisher
             if (_isFire && !Inventory.instance.CheckItem("fireEstinguisher") && Input.GetKey("e") && (Time.time - _lastShow > _cooldown))
             {
                 ShowMessage();
+            }
+
+            if (_isFire && Inventory.instance.CheckItem("fireEstinguisher") && Input.GetKey("e"))
+            {
+                // function for extinguishing fire
+                ExtinguishFire();
+
             }
 
             _posToTeleport = new Vector3(-12.996f, -3.699989f, -1f);

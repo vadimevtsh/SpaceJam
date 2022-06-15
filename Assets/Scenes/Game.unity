@@ -44592,6 +44592,7 @@ MonoBehaviour:
   SpaceMan: {fileID: 805109254}
   barSlider: {fileID: 117441636}
   fire: {fileID: 1056734596}
+  item: {fileID: 11400000, guid: 4b55fff7edd5ad040956dd4e7220de75, type: 2}
 --- !u!1 &1736849409
 GameObject:
   m_ObjectHideFlags: 0
