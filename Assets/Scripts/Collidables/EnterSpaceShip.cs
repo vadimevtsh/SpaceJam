@@ -15,12 +15,13 @@ public class EnterSpaceShip : Collidable
     private bool _isFire = true; 
     public GameObject fire;
     public Item item;
+    private readonly int _fontSize = 25;
 
     private Vector3 _posToTeleport; // coordinates to teleport to after entering the ship
 
     private float _cooldown = 3.0f;
     private float _lastShow;
-    private Vector3 _posToSpawnText = new Vector3(1.626f, 0.425f, -1); // coordinates to show message to after extinguishing the fire
+    private Vector3 _posToSpawnFireText = new Vector3(1.626f, 0.425f, -1); // coordinates to show message to after extinguishing the fire
 
     /// <summary>
     /// Method that represents extinguishing fire.
@@ -42,10 +43,10 @@ public class EnterSpaceShip : Collidable
     /// <summary>
     /// Method that represents showing message, when you don't have a firethrower.
     /// </summary>
-    private void ShowMessage()
+    private void ShowMessage(string messageToDispay)
     {
         _lastShow = Time.time;
-        GameManager.instance.ShowText("U don't have a firethrower", 20, Color.white, _posToSpawnText, Vector3.zero, _cooldown);
+        GameManager.instance.ShowText(messageToDispay, _fontSize, Color.red, _posToSpawnFireText, Vector3.zero, _cooldown);
     }
 
     /// <summary>
@@ -59,16 +60,16 @@ public class EnterSpaceShip : Collidable
             iconToPickUp.SetActive(true);
 
             // if you dont have fireextinguisher
-            if (_isFire && !Inventory.instance.CheckItem("fireEstinguisher") && Input.GetKey("e") && (Time.time - _lastShow > _cooldown))
+            if (Input.GetKey("e") && _isFire)
             {
-                ShowMessage();
-            }
-
-            if (_isFire && Inventory.instance.CheckItem("fireEstinguisher") && Input.GetKey("e"))
-            {
-                // function for extinguishing fire
-                ExtinguishFire();
-
+                if (!Inventory.instance.CheckItem("fireEstinguisher") && (Time.time - _lastShow > _cooldown))
+                {
+                    ShowMessage("You don't have a firethrower");
+                }
+                else if (Inventory.instance.CheckItem("fireEstinguisher"))
+                {
+                    ExtinguishFire();
+                }
             }
 
             _posToTeleport = new Vector3(-12.996f, -3.699989f, -1f);
