@@ -49,7 +49,7 @@ public class FloatingTextManager : MonoBehaviour
     /// <returns>Floating text to be shown.</returns>
     private FloatingText GetFloatingText()
     {
-        FloatingText txt = _floatingTexts.Find(t => !t.active);
+        FloatingText txt = _floatingTexts.Find(t => !t.Active);
 
         if (txt == null)
         {

@@ -8,21 +8,32 @@ using UnityEngine.UI;
 /// </summary>
 public class FloatingText : MonoBehaviour
 {
-    public bool active;
+    private bool _active;
+
     public GameObject go;
     public Text txt;
     public Vector3 motion;
     public float duration;
     public float lastShown;
 
+    public bool Active 
+    { 
+        get => _active;
+        private set
+        {
+            if (_active == value)
+                return;
+            _active = value;
+        }
+    }
     /// <summary>
     /// Method that shows floating text.
     /// </summary>
     public void Show()
     {
-        active = true;
+        _active = true;
         lastShown = Time.time;
-        go.SetActive(active);
+        go.SetActive(_active);
     }
 
     /// <summary>
@@ -30,8 +41,8 @@ public class FloatingText : MonoBehaviour
     /// </summary>
     public void Hide()
     {
-        active = false;
-        go.SetActive(active);
+        _active = false;
+        go.SetActive(_active);
     }
 
     /// <summary>
@@ -39,7 +50,7 @@ public class FloatingText : MonoBehaviour
     /// </summary>
     public void UpdateFloatingText()
     {
-        if (!active)
+        if (!_active)
             return;
 
         if (Time.time - lastShown > duration)

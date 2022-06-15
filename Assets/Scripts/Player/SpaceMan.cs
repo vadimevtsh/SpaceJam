@@ -87,10 +87,10 @@ public class SpaceMan : MonoBehaviour
             if (other.collider.name == "QuitSpaceShip")
             {
                 iconToPickUp.SetActive(false);
-                defaultOxygenRaiseDown = 5; 
+                defaultOxygenRaiseDown = 5;
             }
         }
-        
+
     }
     /// <summary>
     /// Method that removes E button 
@@ -103,5 +103,10 @@ public class SpaceMan : MonoBehaviour
             if (coll.collider.name == str)
                 return true;
         return false;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log(collision.collider.name);
     }
 }

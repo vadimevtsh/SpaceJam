@@ -15,8 +15,5 @@ public class Item : ScriptableObject
     /// <summary>
     /// Method that uses specific item.
     /// </summary>
-    public virtual void Use()
-    {
-        Debug.Log("Using " + name);
-    }
+    public virtual void Use() { }
 }

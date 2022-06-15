@@ -8,8 +8,10 @@ using UnityEngine;
 public class YellowCrystall : Collidable
 {
     public GameObject crystallPrefab;
-    public GameObject O2Bar;
+    public GameObject miniMap;
     public GameObject iconToPickUp;
+    public Item item;
+    
 
     /// <summary>
     /// Method that places crystal into the ship.
@@ -17,13 +19,17 @@ public class YellowCrystall : Collidable
     /// <param name="coll">Collision</param>
     protected override void OnCollide(Collider2D coll)
     {
-        iconToPickUp.SetActive(true);
-        if (coll.name == "spaceman" && Inventory.instance.CheckItem("oxygenCrystall") && Input.GetKeyDown("e"))
+        if (coll.name == "spaceman")
         {
-            iconToPickUp.SetActive(false);
-            Instantiate(crystallPrefab, new Vector3(-13.169f, -2.806f, -6), Quaternion.identity);
-            O2Bar.SetActive(true);
-            //remove from inv
+            iconToPickUp.SetActive(true);
+            if (Inventory.instance.CheckItem("oxygenCrystall") && Input.GetKeyDown("e"))
+            {
+                iconToPickUp.SetActive(false);
+                Instantiate(Resources.Load<GameObject>("Prefabs/yellowCristal"), new Vector3(-13.169f, -2.95f, 0), Quaternion.identity);
+                miniMap.SetActive(true);
+                //remove from inv
+                Inventory.instance.Remove(item);
+            }
         }
     }
 }
