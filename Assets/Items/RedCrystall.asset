@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19f54b4f45c87a9448ebee50ea67409e, type: 3}
   m_Name: RedCrystall
   m_EditorClassIdentifier: 
-  name: RedCrystall
+  name: redCrystall
   icon: {fileID: 21300000, guid: 7f928184844455b438341893d09981c7, type: 3}
   isDefaultItem: 0

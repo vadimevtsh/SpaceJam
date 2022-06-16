@@ -43874,7 +43874,6 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
-  crystallPrefab: {fileID: 1082403246}
   miniMap: {fileID: 365962844}
   iconToPickUp: {fileID: 585569440}
   yellowCrystall: {fileID: 11400000, guid: 1780f04edb9d3f543bb4938aa2cc063b, type: 2}
@@ -43973,11 +43972,6 @@ Transform:
   m_Father: {fileID: 5685113466057726716}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1082403246 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5031263561344220489, guid: 50f482cedb8846548826fe9f4bb2772d, type: 3}
-  m_PrefabInstance: {fileID: 5031263561377273800}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1161811253
 PrefabInstance:
   m_ObjectHideFlags: 0

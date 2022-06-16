@@ -10,6 +10,7 @@ public class ToMaxOxygen : Collidable
     public GameObject Player;
     public GameObject IconToPickUp;
 
+
     /// <summary>
     /// Method that sets oxygen level to maximum inside the ship when collision with the source.
     /// </summary>
@@ -23,6 +24,12 @@ public class ToMaxOxygen : Collidable
             {
                 IconToPickUp.SetActive(false);
                 Player.GetComponent<SpaceMan>().CurrentOxygen = Player.GetComponent<SpaceMan>().MaxOxygen;
+
+                if (Bottle.instance != null && !Bottle.instance.IsFull)
+                {
+                    Bottle.instance.IsFull = true;
+                    Debug.Log("bottle kek " + Bottle.instance.IsFull);
+                }
             }
         }
         
