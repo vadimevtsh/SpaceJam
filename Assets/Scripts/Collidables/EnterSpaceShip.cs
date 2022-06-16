@@ -10,18 +10,18 @@ public class EnterSpaceShip : Collidable
 {
     public GameObject iconToPickUp;
     public GameObject SpaceMan;
-
-    public ExtinguishingFire barSlider;
-    private bool _isFire = true; 
     public GameObject fire;
+
+    public ExtinguishingFire barSlider; 
     public Item item;
-    private readonly int _fontSize = 25;
 
     private Vector3 _posToTeleport; // coordinates to teleport to after entering the ship
+    private Vector3 _posToSpawnFireText = new Vector3(1.626f, 0.425f, -1); // coordinates to show message to after extinguishing the fire
 
+    private bool _isFire = true;
     private float _cooldown = 3.0f;
     private float _lastShow;
-    private Vector3 _posToSpawnFireText = new Vector3(1.626f, 0.425f, -1); // coordinates to show message to after extinguishing the fire
+    private readonly int _fontSize = 25;
 
     /// <summary>
     /// Method that represents extinguishing fire.

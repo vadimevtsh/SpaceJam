@@ -12,9 +12,9 @@ public class FloatingText : MonoBehaviour
 
     public GameObject go;
     public Text txt;
-    public Vector3 motion;
-    public float duration;
-    public float lastShown;
+    public Vector3 _motion;
+    private float _duration;
+    private float _lastShown;
 
     public bool Active 
     { 
@@ -26,13 +26,27 @@ public class FloatingText : MonoBehaviour
             _active = value;
         }
     }
+
+    public float Duration
+    {
+        get => _duration;
+
+        set => _duration = value;
+    }
+
+    public Vector3 Motion
+    {
+        get => _motion;
+
+        set => _motion = value;
+    }
     /// <summary>
     /// Method that shows floating text.
     /// </summary>
     public void Show()
     {
         _active = true;
-        lastShown = Time.time;
+        _lastShown = Time.time;
         go.SetActive(_active);
     }
 
@@ -53,9 +67,9 @@ public class FloatingText : MonoBehaviour
         if (!_active)
             return;
 
-        if (Time.time - lastShown > duration)
+        if (Time.time - _lastShown > _duration)
             Hide();
 
-        go.transform.position += motion * Time.deltaTime;
+        go.transform.position += _motion * Time.deltaTime;
     }
 }

@@ -37,8 +37,8 @@ public class FloatingTextManager : MonoBehaviour
         floatingText.txt.color = color;
 
         floatingText.txt.transform.position = Camera.main.WorldToScreenPoint(position);
-        floatingText.motion = motion;
-        floatingText.duration = duration;
+        floatingText.Motion = motion;
+        floatingText.Duration = duration;
 
         floatingText.Show();
     }
