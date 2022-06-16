@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
     private void IsDead()
     {
         player = GameObject.Find("spaceman");
-        if (player.GetComponent<SpaceMan>().currentOxygen <= 0)
+        if (player.GetComponent<SpaceMan>().CurrentOxygen <= 0)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
             Destroy(player);

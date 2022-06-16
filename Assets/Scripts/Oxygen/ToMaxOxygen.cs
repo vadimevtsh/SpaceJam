@@ -22,7 +22,7 @@ public class ToMaxOxygen : Collidable
             if (Input.GetKeyDown("e"))
             {
                 IconToPickUp.SetActive(false);
-                Player.GetComponent<SpaceMan>().currentOxygen = Player.GetComponent<SpaceMan>().maxOxygen;
+                Player.GetComponent<SpaceMan>().CurrentOxygen = Player.GetComponent<SpaceMan>().MaxOxygen;
             }
         }
         

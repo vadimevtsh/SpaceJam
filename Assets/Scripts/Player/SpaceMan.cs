@@ -11,25 +11,46 @@ public class SpaceMan : MonoBehaviour
     private Vector3 _moveDelta;
     private BoxCollider2D _boxCollider;
     private RaycastHit2D _hit;
-
-    public Vector2 moveSpeed;
-
-    public O2Bar myBar;
-    public float maxOxygen;
-    public float currentOxygen;
-    public float defaultOxygenRaiseDown;
-
-    private string[] _collidableNames = new string[6] { "bottleFloor", "EnterSpaceShip", "QuitSpaceShip", "ToMaxOxygen", "fireKillerInSnow", "yellowCristal" }; // list of strings put in another class
     public GameObject iconToPickUp;
 
+    private Vector2 _moveSpeed;
+
+    public O2Bar myBar;
+
+    private float _maxOxygen;
+    private float _currentOxygen;
+    private float _defaultOxygenRaiseDown;
+
+    private string[] _collidableNames = new string[6] { "bottleFloor", "EnterSpaceShip", "QuitSpaceShip", "ToMaxOxygen", "fireKillerInSnow", "yellowCristal" }; // list of strings put in another class
+
+    public float MaxOxygen
+    {
+        get => _maxOxygen;
+
+        set => _maxOxygen = value;
+    }
+
+    public float CurrentOxygen
+    {
+        get => _currentOxygen;
+
+        set => _currentOxygen = value;
+    }
+
+    public float DefaultOxygenRaiseDown
+    {
+        get => _defaultOxygenRaiseDown;
+
+        set => _defaultOxygenRaiseDown = value;
+    }
     void Start()
     {
-        defaultOxygenRaiseDown = 5;
-        maxOxygen = 100;
-        currentOxygen = maxOxygen;
-        myBar.SetMaxOxygen(maxOxygen);
+        _defaultOxygenRaiseDown = 5;
+        _maxOxygen = 100;
+        _currentOxygen = _maxOxygen;
+        myBar.SetMaxOxygen(_maxOxygen);
 
-        moveSpeed = new Vector2(0.9f, 0.9f);
+        _moveSpeed = new Vector2(0.9f, 0.9f);
         _boxCollider = GetComponent<BoxCollider2D>();
     }
 
@@ -46,19 +67,19 @@ public class SpaceMan : MonoBehaviour
             transform.localScale = new Vector3(-1, 1, 1);
 
         _hit = Physics2D.BoxCast(transform.position, _boxCollider.size, 0, new Vector2(0, _moveDelta.y),
-            Mathf.Abs(_moveDelta.y * Time.deltaTime * moveSpeed.y), LayerMask.GetMask("Actor", "Blocking"));
+            Mathf.Abs(_moveDelta.y * Time.deltaTime * _moveSpeed.y), LayerMask.GetMask("Actor", "Blocking"));
 
         if (_hit.collider == null)
         {
-            transform.Translate(0, _moveDelta.y * Time.deltaTime * moveSpeed.y, 0);
+            transform.Translate(0, _moveDelta.y * Time.deltaTime * _moveSpeed.y, 0);
         }
 
         _hit = Physics2D.BoxCast(transform.position, _boxCollider.size, 0, new Vector2(_moveDelta.x, 0),
-            Mathf.Abs(_moveDelta.x * Time.deltaTime * moveSpeed.x), LayerMask.GetMask("Actor", "Blocking"));
+            Mathf.Abs(_moveDelta.x * Time.deltaTime * _moveSpeed.x), LayerMask.GetMask("Actor", "Blocking"));
 
         if (_hit.collider == null)
         {
-            transform.Translate(_moveDelta.x * Time.deltaTime * moveSpeed.x, 0, 0);
+            transform.Translate(_moveDelta.x * Time.deltaTime * _moveSpeed.x, 0, 0);
         }
 
         ChangeLevelOfOxygen();
@@ -69,10 +90,10 @@ public class SpaceMan : MonoBehaviour
     /// </summary>
     private void ChangeLevelOfOxygen()
     {
-        if (currentOxygen >= maxOxygen)
-            currentOxygen = 100;
-        currentOxygen -= defaultOxygenRaiseDown * Time.deltaTime;
-        myBar.SetOxygen(currentOxygen);
+        if (_currentOxygen >= _maxOxygen)
+            _currentOxygen = 100;
+        _currentOxygen -= _defaultOxygenRaiseDown * Time.deltaTime;
+        myBar.SetOxygen(_currentOxygen);
     }
 
     /// <summary>
@@ -87,7 +108,7 @@ public class SpaceMan : MonoBehaviour
             if (other.collider.name == "QuitSpaceShip")
             {
                 iconToPickUp.SetActive(false);
-                defaultOxygenRaiseDown = 5;
+                _defaultOxygenRaiseDown = 5;
             }
         }
 

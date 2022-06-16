@@ -17,7 +17,7 @@ public class OxygenStop : Collidable
     {
         if (coll.name == "spaceman")
         {
-            Player.GetComponent<SpaceMan>().defaultOxygenRaiseDown = 0;
+            Player.GetComponent<SpaceMan>().DefaultOxygenRaiseDown = 0;
         }
     }
 }
