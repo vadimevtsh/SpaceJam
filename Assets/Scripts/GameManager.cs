@@ -24,14 +24,12 @@ public class GameManager : MonoBehaviour
         if (GameManager.instance != null)
         {
             Destroy(gameObject);
-          //  Destroy(player.gameObject);
             return;
         }
 
         PlayerPrefs.DeleteAll();
 
         instance = this;
-        //DontDestroyOnLoad(gameObject);
     }
 
     /// <summary>

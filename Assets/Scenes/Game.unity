@@ -43877,7 +43877,9 @@ MonoBehaviour:
   crystallPrefab: {fileID: 1082403246}
   miniMap: {fileID: 365962844}
   iconToPickUp: {fileID: 585569440}
-  item: {fileID: 11400000, guid: 1780f04edb9d3f543bb4938aa2cc063b, type: 2}
+  yellowCrystall: {fileID: 11400000, guid: 1780f04edb9d3f543bb4938aa2cc063b, type: 2}
+  blackCrystall: {fileID: 11400000, guid: c99e774e6d7c7dd439805e53639f14d2, type: 2}
+  redCrystall: {fileID: 11400000, guid: 5c8664c43eea8884fb7b3f6c64a3382e, type: 2}
 --- !u!114 &925790906 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6484840974076204839, guid: 1b9116b92b3d770419e9343852bb3145, type: 3}
