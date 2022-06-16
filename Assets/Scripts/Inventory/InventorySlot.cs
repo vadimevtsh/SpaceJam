@@ -51,11 +51,8 @@ public class InventorySlot : MonoBehaviour
     /// </summary>
     public void UseItem()
     {
-        if (item != null && Bottle.instance != null)
-        {
-            item.Use();
-            Bottle.instance.Use();
-        }
+        item.Use();
+        Inventory.instance.Remove(item);
     }
 
 }

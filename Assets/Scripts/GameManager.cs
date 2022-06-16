@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     public float currentOxygen;
     public float maxOxygen;
 
+    [SerializeField] private PlaceForCrystalls _placeForCrystalls;
+
     private void Awake()
     {
         if (GameManager.instance != null)
@@ -50,6 +52,9 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         IsDead();
+        player.GetComponent<SpaceMan>().CurrentOxygen += currentOxygen;
+        currentOxygen = 0;
+        IsWin();
     }
 
     /// <summary>
@@ -64,6 +69,15 @@ public class GameManager : MonoBehaviour
             Destroy(player);
             loseText.text = "You lost";
 
+        }
+    }
+
+    private void IsWin()
+    {
+        if (_placeForCrystalls.isAllCrystalls)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+            Destroy(player);
         }
     }
 }

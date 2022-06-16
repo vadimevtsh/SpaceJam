@@ -15,5 +15,11 @@ public class Item : ScriptableObject
     /// <summary>
     /// Method that uses specific item.
     /// </summary>
-    public virtual void Use() { }
+    public virtual void Use()
+    {
+        if (name == "Bottle")
+        {
+            GameManager.instance.currentOxygen += 20;
+        }
+    }
 }

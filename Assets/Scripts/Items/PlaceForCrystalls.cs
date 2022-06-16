@@ -24,6 +24,12 @@ public class PlaceForCrystalls : Collidable
     private bool _isBlackCrystall;
     private bool _isRedCrystall;
 
+    private bool _isYellowCrystallInSpaceShip;
+    private bool _isBlackCrystallInSpaceShip;
+    private bool _isRedCrystallInSpaceShip;
+
+    public bool isAllCrystalls;
+
     private void CheckCrystallsInInventory()
     {
         if (Inventory.instance.CheckItem("oxygenCrystall"))
@@ -71,6 +77,7 @@ public class PlaceForCrystalls : Collidable
                         Instantiate(Resources.Load<GameObject>("Prefabs/yellowCristal"), new Vector3(-13.2f, -2.95f, 0), Quaternion.identity);
                         _isYellowCrystall = false;
                         Inventory.instance.Remove(yellowCrystall);
+                        _isYellowCrystallInSpaceShip = true;
                     }
 
                     else if (_isBlackCrystall)
@@ -78,20 +85,27 @@ public class PlaceForCrystalls : Collidable
                         Instantiate(Resources.Load<GameObject>("Prefabs/blackCristal"), new Vector3(-13.369f, -2.95f, 0), Quaternion.identity);
                         _isBlackCrystall = false;
                         Inventory.instance.Remove(blackCrystall);
+                        _isBlackCrystallInSpaceShip = true;
                     }
                     else if (_isRedCrystall)
                     {
                         Instantiate(Resources.Load<GameObject>("Prefabs/redCristal"), new Vector3(-13.031f, -2.95f, 0), Quaternion.identity);
                         _isBlackCrystall = false;
                         Inventory.instance.Remove(redCrystall);
+                        _isRedCrystallInSpaceShip = true;
                     }
-                    
+
                     iconToPickUp.SetActive(false);
 
                     // check wheter the minimap is set or not
                     if (!miniMap.activeSelf)
                         miniMap.SetActive(true);
                 }
+            }
+
+            if (_isBlackCrystallInSpaceShip && _isRedCrystallInSpaceShip && _isYellowCrystallInSpaceShip)
+            {
+                isAllCrystalls = true;
             }
         }
     }
