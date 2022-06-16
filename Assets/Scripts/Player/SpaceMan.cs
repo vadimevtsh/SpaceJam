@@ -21,7 +21,7 @@ public class SpaceMan : MonoBehaviour
     private float _currentOxygen;
     private float _defaultOxygenRaiseDown;
 
-    private string[] _collidableNames = new string[7] { "bottleFloor", "EnterSpaceShip", "QuitSpaceShip", "ToMaxOxygen", "fireKillerInSnow", "yellowCristal", "blackCristal" }; // list of strings put in another class
+    private string[] _collidableNames = new string[8] { "bottleFloor", "EnterSpaceShip", "QuitSpaceShip", "ToMaxOxygen", "fireKillerInSnow", "yellowCristal", "blackCristal", "redCristal" }; // list of strings put in another class
 
     public float MaxOxygen
     {
