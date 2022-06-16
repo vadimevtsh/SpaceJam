@@ -21,7 +21,7 @@ public class SpaceMan : MonoBehaviour
     private float _currentOxygen;
     private float _defaultOxygenRaiseDown;
 
-    private string[] _collidableNames = new string[6] { "bottleFloor", "EnterSpaceShip", "QuitSpaceShip", "ToMaxOxygen", "fireKillerInSnow", "yellowCristal" }; // list of strings put in another class
+    private string[] _collidableNames = new string[7] { "bottleFloor", "EnterSpaceShip", "QuitSpaceShip", "ToMaxOxygen", "fireKillerInSnow", "yellowCristal", "blackCristal" }; // list of strings put in another class
 
     public float MaxOxygen
     {
@@ -114,7 +114,7 @@ public class SpaceMan : MonoBehaviour
 
     }
     /// <summary>
-    /// Method that removes E button 
+    /// Method that checks if collision happens with one of the items
     /// </summary>
     /// <param name="coll">Collider</param>
     /// <returns></returns>
