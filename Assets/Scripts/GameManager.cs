@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/// <summary>
+/// This is a class responsible for managing the game.
+/// </summary>
 public class GameManager : MonoBehaviour
 {
     public GameObject player;
@@ -16,22 +19,31 @@ public class GameManager : MonoBehaviour
     public float currentOxygen;
     public float maxOxygen;
 
+    [SerializeField] private PlaceForCrystalls _placeForCrystalls;
+
     private void Awake()
     {
         if (GameManager.instance != null)
         {
             Destroy(gameObject);
-          //  Destroy(player.gameObject);
             return;
         }
 
         PlayerPrefs.DeleteAll();
 
         instance = this;
-        //DontDestroyOnLoad(gameObject);
     }
 
-    public void showText(string msg, int fontSize, Color color, Vector3 position, Vector3 motion, float duration)
+    /// <summary>
+    /// Method that shows floating text, using floatingTextManager.
+    /// </summary>
+    /// <param name="msg">Message to be shown</param>
+    /// <param name="fontSize">Font Size</param>
+    /// <param name="color">Color of the message</param>
+    /// <param name="position">Position on the screen</param>
+    /// <param name="motion">Motion</param>
+    /// <param name="duration">Duration</param>
+    public void ShowText(string msg, int fontSize, Color color, Vector3 position, Vector3 motion, float duration)
     {
         floatingTextManager.Show(msg, fontSize, color, position, motion, duration);
     }
@@ -39,18 +51,33 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        isDead();
+        IsDead();
+        player.GetComponent<SpaceMan>().CurrentOxygen += currentOxygen;
+        currentOxygen = 0;
+        IsWin();
     }
 
-    private void isDead()
+    /// <summary>
+    /// Method that determines whether the player is dead or not.
+    /// </summary>
+    private void IsDead()
     {
         player = GameObject.Find("spaceman");
-        if (player.GetComponent<SpaceMan>().currentOxygen <= 0)
+        if (player.GetComponent<SpaceMan>().CurrentOxygen <= 0)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
             Destroy(player);
-            loseText.text = "U lose. Suck penis";
+            loseText.text = "You lost";
 
+        }
+    }
+
+    private void IsWin()
+    {
+        if (_placeForCrystalls.isAllCrystalls)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+            Destroy(player);
         }
     }
 }
