@@ -1,2 +1,2 @@
 # SpaceJam
-NTUU KPI corsework group assignment for Object Oriented programming course
+Unity 2D game - SpaceJam
